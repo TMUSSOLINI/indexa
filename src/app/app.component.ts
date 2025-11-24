@@ -5,6 +5,7 @@ import { ContainerComponent } from './componentes/container/container.component'
 import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component';
 import { SeparadorComponent } from './componentes/separador/separador.component';
 import { ContatoComponent } from './componentes/contato/contato.component';
+import { FormsModule } from '@angular/forms';
 
 interface Contato {
   id: number;
@@ -24,6 +25,7 @@ import agenda from '../app/agenda.json';
     CabecalhoComponent,
     SeparadorComponent,
     ContatoComponent,
+    FormsModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -32,8 +34,35 @@ export class AppComponent {
   alfabeto: string = 'abcdefghijklmnopqrstuvxywz';
   contatos: Contato[] = agenda;
 
-  filtrarContatoPorLetraInicial(letra: string): Contato[] {
+  filtroPorTexto: string = '';
+
+  private removerAcentos(texto: string): string {
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  filtrarContatosPorTexto(): Contato[] {
+    if (!this.filtroPorTexto) {
+      return this.contatos;
+    }
     return this.contatos.filter((contato) => {
+      // Compara os nomes sem acentuações
+      return this.removerAcentos(contato.nome)
+        .toLowerCase()
+        .includes(this.removerAcentos(this.filtroPorTexto).toLowerCase());
+    });
+  }
+
+  filtrarContatosPorLetraInicial(letra: string): Contato[] {
+    return this.filtrarContatosPorTexto().filter((contato) => {
+      // Compara a letra inicial sem considerar acentuações
+      return this.removerAcentos(contato.nome)
+        .toLowerCase()
+        .startsWith(this.removerAcentos(letra).toLowerCase());
+    });
+  }
+
+  filtrarContatoPorLetraInicial(letra: string): Contato[] {
+    return this.filtrarContatosPorTexto().filter((contato) => {
       return contato.nome.toLowerCase().startsWith(letra);
     });
   }
