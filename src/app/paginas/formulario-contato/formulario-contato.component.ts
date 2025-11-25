@@ -15,12 +15,12 @@ export class FormularioContatoComponent {
 
   constructor() {
     this.contatoForm = new FormGroup({
-      nome: new FormControl(''),
-      telefone: new FormControl(''),
-      email: new FormControl(''),
-      aniversario: new FormControl(''),
-      redes: new FormControl(''),
-      observacoes: new FormControl('')
+      nome: new FormControl('Thiago'),
+      telefone: new FormControl('11 1111 1111'),
+      email: new FormControl('mamama@gmail.com'),
+      aniversario: new FormControl('31/03/1994'),
+      redes: new FormControl('google.com'),
+      observacoes: new FormControl('teste do teste'),
     });
   }
 }
