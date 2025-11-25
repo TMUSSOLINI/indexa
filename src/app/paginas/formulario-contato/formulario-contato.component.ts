@@ -23,4 +23,12 @@ export class FormularioContatoComponent {
       observacoes: new FormControl('teste do teste'),
     });
   }
+
+  salvarContato() {
+    console.log(this.contatoForm.value);
+  }
+
+  cancelar() {
+    console.log('Submissao cancelada!')
+  }
 }
