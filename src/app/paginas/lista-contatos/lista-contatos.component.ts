@@ -13,6 +13,7 @@ interface Contato {
 }
 
 import agenda from '../../agenda.json';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-lista-contatos',
@@ -24,6 +25,7 @@ import agenda from '../../agenda.json';
     ContatoComponent,
     FormsModule,
     FormularioContatoComponent,
+    RouterLink,
   ],
   templateUrl: './lista-contatos.component.html',
   styleUrl: './lista-contatos.component.css',
