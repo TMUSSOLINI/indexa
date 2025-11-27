@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './container.component.html',
-  styleUrl: './container.component.css',
+  styleUrl: './container.component.css'
 })
-export class ContainerComponent {}
+export class ContainerComponent {
+
+}
