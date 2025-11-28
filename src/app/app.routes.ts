@@ -5,15 +5,15 @@ import { ListaContatosComponent } from './paginas/lista-contatos/lista-contatos.
 export const routes: Routes = [
   {
     path: 'formulario',
-    component: FormularioContatoComponent,
+    component: FormularioContatoComponent
   },
   {
     path: 'lista-contatos',
-    component: ListaContatosComponent,
+    component: ListaContatosComponent
   },
   {
     path: '',
     redirectTo: '/lista-contatos',
-    pathMatch: 'full',
-  },
+    pathMatch: 'full'
+  }
 ];

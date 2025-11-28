@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './cabecalho.component.html',
-  styleUrl: './cabecalho.component.css',
+  styleUrl: './cabecalho.component.css'
 })
-export class CabecalhoComponent {}
+export class CabecalhoComponent {
+
+}
