@@ -22,21 +22,23 @@ import { Contato } from '../../componentes/contato/contato';
     ContatoComponent,
     FormsModule,
     FormularioContatoComponent,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './lista-contatos.component.html',
-  styleUrl: './lista-contatos.component.css'
+  styleUrl: './lista-contatos.component.css',
 })
-export class ListaContatosComponent implements OnInit{
-  alfabeto: string = 'abcdefghijklmnopqrstuvwxyz'
+export class ListaContatosComponent implements OnInit {
+  alfabeto: string = 'abcdefghijklmnopqrstuvwxyz';
   contatos: Contato[] = [];
 
-  filtroPorTexto: string = ''
+  filtroPorTexto: string = '';
 
   constructor(private contatoService: ContatoService) {}
 
   ngOnInit() {
-    this.contatos = this.contatoService.obterContatos();
+    this.contatoService.obterContatos().subscribe((listaContatos) => {
+      this.contatos = listaContatos;
+    });
   }
 
   // Remove os acentos de uma string
@@ -48,16 +50,20 @@ export class ListaContatosComponent implements OnInit{
     if (!this.filtroPorTexto) {
       return this.contatos;
     }
-    return this.contatos.filter(contato => {
+    return this.contatos.filter((contato) => {
       // Compara os nomes sem acentuações
-      return this.removerAcentos(contato.nome).toLowerCase().includes(this.removerAcentos(this.filtroPorTexto).toLowerCase());
-    })
+      return this.removerAcentos(contato.nome)
+        .toLowerCase()
+        .includes(this.removerAcentos(this.filtroPorTexto).toLowerCase());
+    });
   }
 
   filtrarContatosPorLetraInicial(letra: string): Contato[] {
-    return this.filtrarContatosPorTexto().filter(contato => {
+    return this.filtrarContatosPorTexto().filter((contato) => {
       // Compara a letra inicial sem considerar acentuações
-      return this.removerAcentos(contato.nome).toLowerCase().startsWith(this.removerAcentos(letra).toLowerCase());
-    })
+      return this.removerAcentos(contato.nome)
+        .toLowerCase()
+        .startsWith(this.removerAcentos(letra).toLowerCase());
+    });
   }
 }
