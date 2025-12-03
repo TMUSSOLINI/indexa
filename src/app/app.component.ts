@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 
 import { FormularioContatoComponent } from './paginas/formulario-contato/formulario-contato.component';
 import { ListaContatosComponent } from './paginas/lista-contatos/lista-contatos.component';
+import { PerfilContatoComponent } from './paginas/perfil-contato/perfil-contato.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -11,11 +12,10 @@ import { ListaContatosComponent } from './paginas/lista-contatos/lista-contatos.
     CommonModule,
     FormularioContatoComponent,
     ListaContatosComponent,
-    RouterOutlet
+    PerfilContatoComponent,
+    RouterOutlet,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
-export class AppComponent {
-
-}
+export class AppComponent {}
